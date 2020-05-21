@@ -16,7 +16,7 @@
  
 - name: install base tools and packages
   yum:
-    name: ['python3','git','ansible']
+    name: ['python3','git']
     state: latest
 
 - name: upgrade packages
