@@ -1,5 +1,10 @@
 - hosts: localhost
   gather_facts: false
+  vars:
+    OSP_GUID: "{{ lookup('env','OSP_GUID') }}"
+    OSP_DOMAIN: "{{ lookup('env','OSP_DOMAIN') }}"
+    OPENTLC_ID: "{{ lookup('env','OPENTLC_ID') }}"
+
   tasks:
   - name: Append inventory file
     blockinfile:
