@@ -12,7 +12,7 @@
     uri:
       url: "http://{{ item.public_v4 }}"
       return_content: yes
-    with_items: "{{ result.openstack_servers }}"
+    with_items: "{{ result.ansible_facts.openstack_servers }}"
     retries: 5
     delay: 1
     register: webpage
