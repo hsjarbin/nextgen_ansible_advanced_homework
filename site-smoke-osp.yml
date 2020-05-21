@@ -12,13 +12,13 @@
     uri:
       url: "http://{{ item.public_v4 }}"
       return_content: yes
-    with_items: "{{ result.ansible_facts.openstack_servers }}"
-    retries: 5
-    delay: 1
+    with_items: "{{ result.openstack_servers }}"
     register: webpage
     tags:
       - osp.smoke
-    
+    retries: 5
+    delay: 3
+    ignore_errors: True   
 
   - name: Fail if 'Ansible has done its job' is not in the page content
     fail:
