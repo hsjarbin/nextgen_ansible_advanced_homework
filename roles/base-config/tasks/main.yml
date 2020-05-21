@@ -16,9 +16,8 @@
  
 - name: install base tools and packages
   yum:
-    name: "{{ item }}"
+    name: ['python3','git','ansible']
     state: latest
-  with_items:
-    - curl
-    - tree
-    - httpie
+
+- name: upgrade packages
+  command: "sudo pip3 install openstacksdk python-openstackclient -U"

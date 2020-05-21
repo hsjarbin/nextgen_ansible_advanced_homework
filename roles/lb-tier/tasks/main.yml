@@ -1,4 +1,9 @@
 ---
+- name: install httpie
+  package:
+    name: httpie
+    state: latest 
+
 - name: install HAProxy
   yum:
     name: "{{ payload }}"
