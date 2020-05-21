@@ -16,8 +16,8 @@
  
 - name: install base tools and packages
   yum:
-    name: ['python3','git']
+    name: ['python3','git','curl','wget','tree']
     state: latest
 
-- name: upgrade packages
-  command: "sudo pip3 install openstacksdk python-openstackclient -U"
+#- name: upgrade packages
+#  command: "sudo pip3 install openstacksdk python-openstackclient -U"
