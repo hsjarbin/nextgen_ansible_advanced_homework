@@ -26,8 +26,8 @@
   - name: Fail if 'Ansible has done its job' is not in the page content
     fail:
     when: 
-      - 'item.hostname == "frontend"'
-      - "'Ansible has done its job' not in qa_webpage.results[0].content"
+      - 'item.skipped | default(false) == true'
+      - "'Ansible has done its job' not in item.content"
     tags:
       - osp.smoke
-    loop: "{{ openstack_info.openstack_servers }}"
+    loop: "{{ qa_webpage.results }}"
