@@ -31,4 +31,3 @@
     tags:
       - osp.smoke
     loop: "{{ openstack_info.openstack_servers }}"
-    ignore_errors: True
