@@ -55,6 +55,9 @@
       return_content: yes
     register: prod_webpage
 
+  - name: Debug
+    debug:
+      var: prod_webpage
 
   - name: Fail
     fail:
@@ -62,5 +65,3 @@
 
   - name: Success
     debug: msg="Congrats Yours HW Assignment is completed"
-
-
