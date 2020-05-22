@@ -4,20 +4,20 @@
   - name: OpenStack servers
     os_server_info:
       cloud: openstack
-    register: result
+    register: openstack_info
     tags:
        osp.smoke
 
   - name: Curl website
     uri:
       url: "http://{{ item.public_v4 }}"
+      status_code: 200
       return_content: yes
-    with_items: "{{ result.openstack_servers }}"
-    register: webpage
+    loop: "{{ openstack_info.openstack_servers }}"
+    when: 'item.hostname == "frontend"'
+    register: qa_webpage
     tags:
       - osp.smoke
-    retries: 5
-    delay: 3
     ignore_errors: True   
 
   - debug:
@@ -25,9 +25,6 @@
 
   - name: Fail if 'Ansible has done its job' is not in the page content
     fail:
-    when: "'Ansible has done its job' not in webpage.content"
+    when: "'Ansible has done its job' not in webpage.results[0].content"
     tags:
       - osp.smoke
-
-    # when: "'Ansible has done its job' not in webpage.results[0].content"
-
