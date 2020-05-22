@@ -1,3 +1,16 @@
+- hosts: localhost
+  gather_facts: false
+  vars:
+    OSP_GUID: "{{ lookup('env','OSP_GUID') }}"
+    OSP_DOMAIN: "{{ lookup('env','OSP_DOMAIN') }}"
+  tasks:
+  - name: Create In-memory Inventory
+    add_host: 
+      name: workstation-{{ OSP_GUID }}.{{ OSP_DOMAIN }}
+      group: workstation
+      ansible_user: "cloud-user"
+      ansible_ssh_private_key_file: ~/.ssh/openstack.pem
+
 - hosts: workstation
   gather_facts: false
   tasks:
@@ -23,7 +36,7 @@
   - debug:
       var: qa_webpage
 
-  - name: Fail if 'Ansible has done its job' is not in the page content
+  - name: Fail if Ansible has done its job is not in the page content
     fail:
     when: 
       - 'item.skipped | default(false) == true'
