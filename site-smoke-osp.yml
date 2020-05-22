@@ -27,7 +27,7 @@
     fail:
     when: 
       - 'item.skipped | default(false) == true'
-      - "'Ansible has done its job' not in item.content"
+      - '"Ansible has done its job" not in item.content'
     tags:
       - osp.smoke
     loop: "{{ qa_webpage.results }}"
