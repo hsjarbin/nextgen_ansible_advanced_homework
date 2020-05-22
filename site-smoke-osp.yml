@@ -30,3 +30,4 @@
       - "'Ansible has done its job' not in qa_webpage.results[0].content"
     tags:
       - osp.smoke
+    loop: "{{ openstack_info.openstack_servers }}"
